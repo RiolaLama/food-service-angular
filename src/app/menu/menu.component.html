@@ -1,0 +1,140 @@
+<div class="container my-5 pt-5 mx-auto">
+  <div class="text-center">
+    <h5 class="section-title ff-secondary text-center text-primary fw-bold fs-3">Food Menu</h5>
+    <h1 class="mb-5 fw-bolder fs-1 ">Most Popular Items</h1>
+  </div>
+  <div class="tab-class text-center">
+    <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5  ">
+      <li class="nav-item">
+        <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-1">
+          <i class="fa fa-coffee fa-2x text-primary"></i>
+          <div class="ps-3 ">
+            <!-- <small class="text-body">Popular</small> -->
+            <h6 class="mt-n1 mb-0 text-dark fw-bolder">Breakfast</h6>
+          </div>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-2">
+          <i class="fa fa-hamburger fa-2x text-primary"></i>
+          <div class="ps-3">
+            <!-- <small class="text-body">Special</small -->
+            <h6 class="mt-n1 mb-0 text-dark fw-bolder">Launch</h6>
+          </div>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-3">
+          <i class="fa fa-utensils fa-2x text-primary"></i>
+          <div class="ps-3">
+            <!-- <small class="text-body">Lovely</small> -->
+            <h6 class="mt-n1 mb-0 text-dark fw-bolder">Dinner</h6>
+          </div>
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div id="tab-1" class="tab-pane fade show p-0 active">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+          <div *ngFor="let food of foods; index as i">
+            <div class="product-card m-3 animate__animated animate__zoomIn">
+              <div *ngIf="food.hot" class="badge">Hot</div>
+              <div class="product-tumb p-5">
+                <img src="{{food.image}}" class=" img-fluid rounded" alt="">
+              </div>
+              <div class="product-details p-5">
+                <span class="product-category">{{ food.category }}</span>
+                <h4><a routerLink="/product/{{ i }}">{{ food.name }}</a></h4>
+                <p>{{ food.description }}</p>
+                <div class="product-bottom-details d-flex">
+                  <div class="product-price">
+                    <ng-container *ngIf="food.hot; else noDiscount">
+                      <small>${{ food.price | number: '1.2-2' }}</small>
+                      <span>${{ food.price * 0.8 | number: '1.2-2' }}</span>
+                    </ng-container>
+                    <ng-template #noDiscount>
+                      <span>${{ food.price | number: '1.2-2' }}</span>
+                    </ng-template>
+                  </div>
+
+                  <div class="product-links">
+                    <ng-container *ngIf="food.availability; else notAccessible">
+                      <h6><a routerLink="/product/{{ i }}" class="">See the Details</a></h6>
+                      <h6 class="h6"><a (click)="addToCart(food)" class="">Add to Cart</a></h6>
+                    </ng-container>
+                    <ng-template #notAccessible>
+                      <p style="font-size: 16px; color: rgb(243, 41, 41);">Not available now
+                      </p>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container-fluid mt-5 py-5 ">
+  <div class="container py-5 mb-5">
+
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+      <h5 class="section-title ff-secondary text-center text-primary fw-bold fs-3">Food Menu</h5>
+      <h1 class="mb-5 fw-bolder fs-1">Most Popular Items</h1>
+    </div>
+    <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
+      <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5  ">
+        <li class="nav-item">
+          <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-1">
+            <i class="fa fa-coffee fa-2x text-primary"></i>
+            <div class="ps-3 ">
+              <small class="text-body">Popular</small>
+              <h6 class="mt-n1 mb-0 text-dark fw-bolder">Breakfast</h6>
+            </div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-2">
+            <i class="fa fa-hamburger fa-2x text-primary"></i>
+            <div class="ps-3">
+              <small class="text-body">Special</small>
+              <h6 class="mt-n1 mb-0 text-dark fw-bolder">Launch</h6>
+            </div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-3">
+            <i class="fa fa-utensils fa-2x text-primary"></i>
+            <div class="ps-3">
+              <small class="text-body">Lovely</small>
+              <h6 class="mt-n1 mb-0 text-dark fw-bolder">Dinner</h6>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div id="tab-1" class="tab-pane fade show p-0 active">
+          <div class="row  row-cols-1 row-cols-md-2  row-cols-lg-3 row-cols-xxl-4">
+            <div *ngFor="let food of foods; index as i">
+              <div class="card my-4">
+                <img class="card-img-top img-fluid rounded" src="{{food.image}}" alt="">
+                <div class="card-body ">
+                  <h5 class="d-flex justify-content-between border-bottom pb-2 fw-bolder fw-bolder">
+                    <span>{{food.name}}</span>
+                    <span class="text-primary">${{food.price}}</span>
+                  </h5>
+                  <small class="fst-italic text-body">{{food.description}}</small>
+                </div>
+
+                <a href="" class="btn btn-primary py-sm-1 px-sm-5 ">Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- Menu End -->
