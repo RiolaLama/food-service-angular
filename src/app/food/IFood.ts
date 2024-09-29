@@ -8,5 +8,6 @@ export interface IFood {
   description?: string;
   category: string;
   availability: boolean;
-  hot:boolean
+  hot: boolean;
+  quantity: number;
 }

@@ -1,0 +1,77 @@
+<div class="container my-5 pt-5 mx-auto">
+  <div class="text-center animate__animated animate__fadeInDown">
+    <h5
+      class="section-title ff-secondary text-center text-primary fw-bold fs-3"
+    >
+      Your Shopping Cart
+    </h5>
+    <h1 class="mb-5 fw-bolder fs-1">Ready to Order?</h1>
+  </div>
+
+  <div class="row animate__animated animate__fadeInUp">
+    <div
+      class="col-md-12 col-lg-11 mx-auto text-center text-md-end"
+      *ngIf="cart.length > 0"
+    >
+      <button class="btn btn-danger" (click)="clearCart()">Clear Cart</button>
+    </div>
+    <div class="col-md-12 col-lg-11 mx-auto" *ngIf="cart.length === 0">
+      <div class="text-center">
+        <p class="fs-4">Your cart is empty</p>
+        <a class="btn btn-secondary mt-4" routerLink="/menu">Go to the menu</a>
+      </div>
+    </div>
+    <div
+      class="col-md-12 col-lg-11 mx-auto"
+      *ngFor="let items of cart; index as i"
+    >
+      <div class="row g-0 py-2">
+        <div class="col-10 col-md-3 px-3 mx-auto">
+          <img src="{{ cart[i].image }}" class="img-fluid rounded" alt="..." />
+        </div>
+        <div class="col-10 col-md-4 mx-auto">
+          <p class="card-text p-3 fs-4">{{ cart[i].name }}</p>
+        </div>
+        <div class="col-11 col-md-3">
+          <p class="card-text p-3 text-md-center ms-md-auto text-end">
+            <button
+              class="btn btn-secondary btn-sm rounded-circle"
+              (click)="increaseQuantity(cart[i].id)"
+            >
+              <i class="fa-solid fa-plus"></i>
+            </button>
+            <span class="mx-3">{{ cart[i].quantity }}</span>
+            <button
+              class="btn btn-secondary btn-sm rounded-circle"
+              (click)="decreaseQuantity(cart[i].id)"
+            >
+              <i class="fa-solid fa-minus"></i>
+            </button>
+          </p>
+        </div>
+
+        <div class="col-11 col-md-2">
+          <div
+            class="d-flex justify-content-end align-items-center py-0 py-sm-2 px-3"
+          >
+            <p class="fs-5 mt-1 mx-3 mx-md-4">
+              {{ cart[i].price }}<span>&#8364;</span>
+            </p>
+            <a class="btn btn-danger btn-sm mb-2" (click)="removeItem(i)"
+              ><i class="fa-solid fa-x"></i
+            ></a>
+          </div>
+        </div>
+        <div class="col-10 col-md-12 mx-auto mx-md-3 mt-md-3">
+          <hr />
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12" *ngIf="cart.length > 0">
+      <div class="d-flex align-items-center justify-content-end me-5">
+        <p class="fs-4 me-5">Total:</p>
+        <p class="fs-4">{{ total | number : "1.2-2" }}<span>&#8364;</span></p>
+      </div>
+    </div>
+  </div>
+</div>

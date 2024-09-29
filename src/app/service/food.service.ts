@@ -1,65 +1,76 @@
-import {Injectable} from '@angular/core';
-import {IFood} from "../food/IFood";
+import { Injectable } from '@angular/core';
+import { IFood } from "../food/IFood";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FoodService {
-  card: Array<IFood> = [];
-  total: number = 0;
-  look: number = 0;
-  bth: number = 0;
-  free: number = 0;
-  one: number = 0;
+  cart: Array<IFood> = JSON.parse(localStorage.getItem('cartItems') || "[]");
+  total: number = this.calculateTotal();
+
 
   constructor() {
   }
-  addToCart(food: IFood) {
-    this.card.push(food);
+  addToCart(food: IFood): boolean {
+    let item = this.cart.find(i => i.id === food.id);
+    if (item) {
+      item.quantity++;
+      this.saveCart();
+      return false;
+    } else {
+      this.cart.push({ ...food, quantity: 1 });
+      this.saveCart();
+      return true;
+    }
   }
 
   getCart() {
-    return this.card;
+    return this.cart;
   }
 
   clearCart() {
-    this.card = [];
-    return this.card;
+    this.cart = [];
+    this.saveCart();
+    return this.cart;
   }
-  sumTotal() {
-    this.total = 0;
-    for (let val of this.card) {
-      this.total += val.price;
+
+  removeItem(item: any) {
+    this.cart.splice(this.cart.indexOf(item), 1);
+    this.saveCart();
+  }
+  increaseQuantity(id: number) {
+    let item = this.cart.find(i => i.id === id)
+    if (item) {
+      item.quantity++
+      this.saveCart();
     }
+  }
+  decreaseQuantity(id: number) {
+    let item = this.cart.find(i => i.id === id)
+    if (item) {
+      item.quantity--
+      if (item.quantity <= 0) {
+        this.removeItem(item);
+      } else {
+        this.saveCart();
+      }
+    }
+  }
+
+  getTotal() {
+    this.total = this.calculateTotal();
     return this.total;
   }
 
-  service() {
-    for (let val of this.card) {
-      this.look += val.price * 0.1;
-    }
-    return this.look;
+  private saveCart() {
+    localStorage.setItem('cartItems', JSON.stringify(this.cart));
+    this.total = this.calculateTotal();
   }
 
-  booth() {
-    for (let val of this.card) {
-      this.bth = this.look + this.total;
-    }
-    return this.bth;
+  private calculateTotal() {
+    return this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   }
 
-  fre() {
-    if (this.total > 40) {
-      this.free = this.total * 0.15;
-    }
-    return this.free;
-  }
-
-  last() {
-    if (this.total > 40) {
-      this.one = this.bth - this.free;
-    }
-    return this.one;
-  }
+  
 }
 

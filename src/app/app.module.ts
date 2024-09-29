@@ -9,8 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
-import { OrderComponent } from './order/order.component';
 import { TeamComponent } from './team/team.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +21,12 @@ import { TeamComponent } from './team/team.component';
     AboutComponent,
     FooterComponent,
     MenuComponent,
-    OrderComponent,
-    TeamComponent
+    TeamComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

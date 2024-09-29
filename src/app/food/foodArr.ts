@@ -9,7 +9,8 @@ export const foods = [
     description: "Delicious Italian pizza with melted cheese and savory toppings.",
     category: "dinner",
     availability: true,
-    hot: false
+    hot: false,
+    quantity: 1
   },
   {
     id: 2,
@@ -21,7 +22,8 @@ export const foods = [
     description: "Fresh and flavorful Japanese sushi rolls with a variety of fillings.",
     category: "dinner",
     availability: true,
-    hot: true
+    hot: true,
+    quantity: 1
   },
   {
     id: 3,
@@ -33,7 +35,8 @@ export const foods = [
     description: "Classic American burger with a juicy beef patty and fresh toppings.",
     category: "lunch",
     availability: true,
-    hot: false
+    hot: false,
+    quantity: 1
   },
   {
     id: 4,
@@ -45,7 +48,8 @@ export const foods = [
     description: "Authentic Thai stir-fried noodles with a perfect balance of flavors.",
     category: "lunch",
     availability: false,
-    hot: false
+    hot: false,
+    quantity: 1
   },
   {
     id: 5,
@@ -57,7 +61,8 @@ export const foods = [
     description: "Delightful Mexican tacos filled with seasoned beef and fresh toppings.",
     category: "dinner",
     availability: true,
-    hot: true
+    hot: true,
+    quantity: 1
   },
   {
     id: 6,
@@ -69,7 +74,8 @@ export const foods = [
     description: "Classic Italian pasta dish with creamy carbonara sauce and crispy bacon.",
     category: "lunch",
     availability: true,
-    hot: true
+    hot: true,
+    quantity: 1
 
   },
   {
@@ -82,8 +88,8 @@ export const foods = [
     description: "Aromatic Indian curry with tender chicken in a flavorful sauce.",
     category: "lunch",
     availability: true,
-    hot: false
-
+    hot: false,
+    quantity: 1
   },
   {
     id: 8,
@@ -95,7 +101,8 @@ export const foods = [
     description: "Japanese-style hamburger steak served with rich mushroom gravy.",
     category: "lunch",
     availability: true,
-    hot: false
+    hot: false,
+    quantity: 1
   },
   {
     id: 9,
@@ -107,7 +114,8 @@ export const foods = [
     description: "Classic American Caesar salad with crisp lettuce and tangy dressing.",
     category: "lunch",
     availability: true,
-    hot: false
+    hot: false,
+    quantity: 1
   },
   {
     id: 10,
@@ -119,7 +127,8 @@ export const foods = [
     description: "Hearty Hungarian goulash stew with tender beef and flavorful spices.",
     category: "dinner",
     availability: true,
-    hot: false
+    hot: false,
+    quantity: 1
   },
   {
     id: 11,
@@ -131,7 +140,8 @@ export const foods = [
     description: "Classic American omelette made with fluffy eggs and various fillings.",
     category: "breakfast",
     availability: true,
-    hot: true
+    hot: true,
+    quantity: 1
   },
   {
     id: 12,
@@ -143,7 +153,8 @@ export const foods = [
     description: "Fluffy American pancakes served with maple syrup and butter.",
     category: "breakfast",
     availability: true,
-    hot: false
+    hot: false,
+    quantity: 1
   },
   {
     id: 13,
@@ -155,7 +166,8 @@ export const foods = [
     description: "Traditional French croissant with a flaky and buttery pastry.",
     category: "breakfast",
     availability: false,
-    hot: false
-
+    hot: false,
+    quantity: 1
   }
 ];
+
